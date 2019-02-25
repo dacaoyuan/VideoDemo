@@ -7,6 +7,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:name=".InitApplication"
         android:allowBackup="true"
@@ -24,7 +29,10 @@
         </activity>
         <activity
             android:name=".activity.VideoLocalAllActivity"
-            android:theme="@style/AppTheme2"></activity>
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.VideoRecorderActivity"
+            android:theme="@style/AppTheme2" />
     </application>
 
 </manifest>

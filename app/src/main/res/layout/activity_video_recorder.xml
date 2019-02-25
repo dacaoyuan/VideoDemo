@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.VideoRecorderActivity">
+
+
+    <com.cjt2325.cameralibrary.JCameraView
+        android:id="@+id/jcameraview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:duration_max="10000"
+        app:iconLeft="@drawable/ic_arrow_back_white_24dp"
+        app:iconMargin="20dp"
+        app:iconSize="30dp"
+        app:iconSrc="@drawable/ic_camera" />
+
+</android.support.constraint.ConstraintLayout>

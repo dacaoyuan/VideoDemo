@@ -40,5 +40,8 @@ dependencies {
 
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 
-    implementation 'io.reactivex:rxandroid:1.0.1'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+
+
+    implementation 'cjt.library.wheel:camera:1.1.9'
 }

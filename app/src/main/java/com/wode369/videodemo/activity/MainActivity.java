@@ -52,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.button01, R.id.button02, R.id.button03})
     public void onViewClicked(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.button01:
-                Intent intent = new Intent(MainActivity.this, VideoLocalAllActivity.class);
+                intent = new Intent(MainActivity.this, VideoLocalAllActivity.class);
                 startActivityIfNeeded(intent, VIDEO_REQUESTCODE);
 
                 break;
@@ -63,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.button03:
-
+                intent = new Intent(MainActivity.this, VideoRecorderActivity.class);
+                startActivityIfNeeded(intent, VIDEO_REQUESTCODE);
 
                 break;
         }
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        } else if (requestCode == VIDEO_REQUESTCODE & resultCode == 11) {
+        } else if (requestCode == VIDEO_REQUESTCODE && resultCode == 11) {
 
             String video_path = data.getStringExtra("video_path");
             String poster_path = data.getStringExtra("poster_path");
@@ -128,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
 
             tvPath.setText("视频路径：\n" + video_path + "\n\n" + " 视频缩略图路径：\n" + poster_path);
             videoCrop();
+
+        } else if (requestCode == VIDEO_REQUESTCODE && resultCode == 22) {//拍摄的视频路径，可以返回到这里
 
         }
 
@@ -138,10 +142,6 @@ public class MainActivity extends AppCompatActivity {
     //这里推荐一个开源框架，Android-Video-Trimmer： https://github.com/iknow4/Android-Video-Trimmer 还不错。
     // 缺点是：使用ffmpeg进行视频裁剪。会让你的app增大许多,20-30M
     private void videoCrop() {
-
-
-
-
 
 
     }
