@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="3dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/default_image" />
+
+    <TextView
+        android:id="@+id/video_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="13sp"
+        tools:text="12:10" />
+
+    <TextView
+        android:id="@+id/video_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="视频太大，暂不支持上传"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+
+</FrameLayout>
