@@ -134,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
         // 视频其他信息的查询条件
         String[] mediaColumns = {MediaStore.Video.Media._ID,
-                MediaStore.Video.Media.DATA, MediaStore.Video.Media.DURATION, MediaStore.Video.Media.SIZE, MediaStore.Video.Thumbnails.DATA};
+                MediaStore.Video.Media.DATA,  MediaStore.Video.Media.DURATION,MediaStore.Video.Media.SIZE, MediaStore.Video.Thumbnails.DATA};
 
 
-        Cursor cursor = getContentResolver().query(data.getData(),
+        Cursor cursor = getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                 mediaColumns, null, null, MediaStore.Video.VideoColumns.DATE_ADDED + " DESC");
 
         if (cursor == null) {

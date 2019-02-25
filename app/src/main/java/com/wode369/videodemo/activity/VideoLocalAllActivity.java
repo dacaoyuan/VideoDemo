@@ -57,7 +57,6 @@ public class VideoLocalAllActivity extends AppCompatActivity {
             Log.i(TAG, "onCreate: localVideoList getThumbPath=" + videoBean.getThumbPath());
             Log.i(TAG, "onCreate: localVideoList getDuration=" + videoBean.getDuration());
         }*/
-        // ThumbnailUtils.createVideoThumbnail()
 
         if (localVideoList != null && localVideoList.size() > 0) {
             videoAdapter.setNewData(localVideoList);
