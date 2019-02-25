@@ -112,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
                 LocalVideoBean localVideoBean = getVideoPath(data);
 
                 tvPath.setText("视频路径：\n" + localVideoBean.getPath() + "\n\n" + " 视频缩略图路径：\n" + localVideoBean.getThumbPath());
+                videoCrop();
+
+
             } else {
                 Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show();
             }
@@ -124,8 +127,21 @@ public class MainActivity extends AppCompatActivity {
 
 
             tvPath.setText("视频路径：\n" + video_path + "\n\n" + " 视频缩略图路径：\n" + poster_path);
+            videoCrop();
 
         }
+
+
+    }
+
+    //得到视频路径，new 出视频file，我们就可以对视频进行剪裁处理了（文字，滤镜...）
+    //这里推荐一个开源框架，Android-Video-Trimmer： https://github.com/iknow4/Android-Video-Trimmer 还不错。
+    // 缺点是：使用ffmpeg进行视频裁剪。会让你的app增大许多,20-30M
+    private void videoCrop() {
+
+
+
+
 
 
     }
@@ -134,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 视频其他信息的查询条件
         String[] mediaColumns = {MediaStore.Video.Media._ID,
-                MediaStore.Video.Media.DATA,  MediaStore.Video.Media.DURATION,MediaStore.Video.Media.SIZE, MediaStore.Video.Thumbnails.DATA};
+                MediaStore.Video.Media.DATA, MediaStore.Video.Media.DURATION, MediaStore.Video.Media.SIZE, MediaStore.Video.Thumbnails.DATA};
 
 
         Cursor cursor = getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
