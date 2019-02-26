@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.wode369.videocroplibrary.features.trim.VideoTrimmerActivity;
 import com.wode369.videodemo.R;
 import com.wode369.videodemo.bean.LocalVideoBean;
 
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Button getPermission;
 
     private final static int VIDEO_REQUESTCODE = 22;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,12 +112,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        Log.i(TAG, "onActivityResult: requestCode=" + requestCode + " resultCode=" + resultCode);
+
         if (resultCode == RESULT_OK && requestCode == 66) {
             if (data != null) {
                 LocalVideoBean localVideoBean = getVideoPath(data);
 
                 tvPath.setText("视频路径：\n" + localVideoBean.getPath() + "\n\n" + " 视频缩略图路径：\n" + localVideoBean.getThumbPath());
-                videoCrop();
+                videoCrop(localVideoBean.getPath());
 
 
             } else {
@@ -129,19 +135,33 @@ public class MainActivity extends AppCompatActivity {
 
 
             tvPath.setText("视频路径：\n" + video_path + "\n\n" + " 视频缩略图路径：\n" + poster_path);
-            videoCrop();
+            videoCrop(video_path);
 
         } else if (requestCode == VIDEO_REQUESTCODE && resultCode == 22) {//拍摄的视频路径，可以返回到这里
+
+        } else if (requestCode == VIDEO_TRIM_REQUEST_CODE) {
 
         }
 
 
     }
 
+    public static final int VIDEO_TRIM_REQUEST_CODE = 0x001;
+    private static final String VIDEO_PATH_KEY = "video-file-path";
+
     //得到视频路径，new 出视频file，我们就可以对视频进行剪裁处理了（文字，滤镜...）
     //这里推荐一个开源框架，Android-Video-Trimmer： https://github.com/iknow4/Android-Video-Trimmer 还不错。
     // 缺点是：使用ffmpeg进行视频裁剪。会让你的app增大许多,20-30M
-    private void videoCrop() {
+    private void videoCrop(String videoPath) {
+
+        if (!TextUtils.isEmpty(videoPath)) {
+            Bundle bundle = new Bundle();
+            bundle.putString(VIDEO_PATH_KEY, videoPath);
+
+            Intent intent = new Intent(MainActivity.this, VideoTrimmerActivity.class);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, VIDEO_TRIM_REQUEST_CODE);
+        }
 
 
     }
