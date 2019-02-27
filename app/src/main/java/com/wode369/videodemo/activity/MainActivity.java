@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Button getPermission;
 
     private final static int VIDEO_REQUESTCODE = 22;
-
+    public static final int VIDEO_TRIM_REQUEST_CODE = 23;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,14 +139,14 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (requestCode == VIDEO_REQUESTCODE && resultCode == 22) {//拍摄的视频路径，可以返回到这里
 
-        } else if (requestCode == VIDEO_TRIM_REQUEST_CODE) {
+        } else if (requestCode == VIDEO_TRIM_REQUEST_CODE&& resultCode == 0) {
 
         }
 
 
     }
 
-    public static final int VIDEO_TRIM_REQUEST_CODE = 0x001;
+
     private static final String VIDEO_PATH_KEY = "video-file-path";
 
     //得到视频路径，new 出视频file，我们就可以对视频进行剪裁处理了（文字，滤镜...）
