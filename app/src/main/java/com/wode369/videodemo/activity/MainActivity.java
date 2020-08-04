@@ -176,13 +176,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private LocalVideoBean getVideoPath(Intent data) {
+        Uri videoUrl = data.getData();
 
+        System.out.println("MainActivity.getVideoPath videoUrl=" +videoUrl);
         // 视频其他信息的查询条件
         String[] mediaColumns = {MediaStore.Video.Media._ID,
                 MediaStore.Video.Media.DATA, MediaStore.Video.Media.DURATION, MediaStore.Video.Media.SIZE, MediaStore.Video.Thumbnails.DATA};
 
 
-        Cursor cursor = getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+        Cursor cursor = getContentResolver().query(videoUrl,
                 mediaColumns, null, null, MediaStore.Video.VideoColumns.DATE_ADDED + " DESC");
 
         if (cursor == null) {
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
         LocalVideoBean info = new LocalVideoBean();
         info.setPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)));
-        info.setDuration(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)));
+        //info.setDuration(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)));
         info.setSize(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)));
         info.setThumbPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Thumbnails.DATA)));
 
