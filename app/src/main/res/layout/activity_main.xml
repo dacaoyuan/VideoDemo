@@ -49,5 +49,12 @@
         android:layout_marginTop="10dp"
         tools:text="/sldk/xxx" />
 
+    <TextView
+        android:id="@+id/tv_clipping_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        tools:text="/sldk/xxx" />
+
 
 </LinearLayout>

@@ -86,6 +86,10 @@ public class VideoTrimmerActivity extends AppCompatActivity implements VideoTrim
 
         if (mProgressDialog.isShowing()) mProgressDialog.dismiss();
         ToastUtil.longShow(this, getString(R.string.trimmed_done));
+
+        Intent intent = new Intent();
+        intent.putExtra("clippingPath", path);
+        setResult(RESULT_OK, intent);
         finish();
         //TODO: please handle your trimmed video url here!!!
         //String out = StorageUtil.getCacheDir() + File.separator + COMPRESSED_VIDEO_FILE_NAME;

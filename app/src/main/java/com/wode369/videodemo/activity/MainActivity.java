@@ -38,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
     Button button03;
     @BindView(R.id.tv_path)
     TextView tvPath;
+    @BindView(R.id.tv_clipping_path)
+    TextView tv_clipping_path;
     @BindView(R.id.getPermission)
     Button getPermission;
 
     private final static int VIDEO_REQUESTCODE = 22;
-    public static final int VIDEO_TRIM_REQUEST_CODE = 23;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (requestCode == VIDEO_REQUESTCODE && resultCode == 22) {//拍摄的视频路径，可以返回到这里
 
-        } else if (requestCode == VIDEO_TRIM_REQUEST_CODE&& resultCode == 0) {
+        } else if (requestCode == VideoTrimmerActivity.VIDEO_TRIM_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                String clippingPath = data.getStringExtra("clippingPath");
+                tv_clipping_path.setText("剪裁结果路径：\n" + clippingPath);
+            }
+
 
         }
 
@@ -155,12 +161,15 @@ public class MainActivity extends AppCompatActivity {
     private void videoCrop(String videoPath) {
 
         if (!TextUtils.isEmpty(videoPath)) {
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putString(VIDEO_PATH_KEY, videoPath);
 
             Intent intent = new Intent(MainActivity.this, VideoTrimmerActivity.class);
             intent.putExtras(bundle);
-            startActivityForResult(intent, VIDEO_TRIM_REQUEST_CODE);
+            startActivityForResult(intent, VIDEO_TRIM_REQUEST_CODE);*/
+
+            VideoTrimmerActivity.call(this, videoPath);
+
         }
 
 
